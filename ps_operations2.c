@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_operations2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habenydi <habenydi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 09:57:22 by habenydi          #+#    #+#             */
-/*   Updated: 2025/01/09 11:11:11 by habenydi         ###   ########.fr       */
+/*   Created: 2025/01/09 21:41:50 by habenydi          #+#    #+#             */
+/*   Updated: 2025/01/09 21:50:13 by habenydi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+void	rra_rrb(t_stack **a, int c)
 {
-	t_stack	*a;
-	t_stack	*b;
 	t_stack	*tmp;
-	int	i;
+	t_stack	*fin;
 
-	i = ac - 1;
-	a = ft_lstnew(ft_atoi(av[ac - 1]), ac - 1);
-	tmp = a;
-	while (i-- > 1)
-	{
-		tmp = ft_lstnew(ft_atoi(av[i]), i);
-		tmp = tmp->next;
-	}
-	ft_sort(&a, &b);
-	while (a != NULL)
-	{
-		printf("%d\n", a->data);
-		a = a->next;
-	}
+	if (!(*a))
+		return;
+	tmp = ft_lstlast(*a);
+	fin = *a;
+	while (fin->next->next != NULL)
+		fin = fin->next;
+	tmp->next = *a;
+	*a = tmp;
+	fin->next = NULL;
+	if (c == 'a')
+		write(1, "rra\n", 4);
+	if (c == 'b')
+		write(1, "rrb\n", 4);
+}
+
+void	rrr(t_stack **a, t_stack **b)
+{
+	rra_rrb(a, 's');
+	rra_rrb(b, 's');
+	write(1, "rrr\n", 4);
 }

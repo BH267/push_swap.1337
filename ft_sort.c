@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habenydi <habenydi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 09:57:22 by habenydi          #+#    #+#             */
-/*   Updated: 2025/01/09 11:11:11 by habenydi         ###   ########.fr       */
+/*   Created: 2025/01/09 17:36:39 by habenydi          #+#    #+#             */
+/*   Updated: 2025/01/09 18:14:02 by habenydi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+void	ft_sort(t_stack **a, t_stack **b)
 {
-	t_stack	*a;
-	t_stack	*b;
-	t_stack	*tmp;
-	int	i;
-
-	i = ac - 1;
-	a = ft_lstnew(ft_atoi(av[ac - 1]), ac - 1);
-	tmp = a;
-	while (i-- > 1)
+	while ( *a != NULL)
 	{
-		tmp = ft_lstnew(ft_atoi(av[i]), i);
-		tmp = tmp->next;
+		if (!(*b) || (*a)->data >= (*b)->data)
+			pa_pb(b, a, 'b');
+		else
+		{
+			pa_pb(a, b, 'a');
+			ra_rb(a, 'a');
+		}
 	}
-	ft_sort(&a, &b);
-	while (a != NULL)
-	{
-		printf("%d\n", a->data);
-		a = a->next;
-	}
+	while (*b != NULL)
+		pa_pb(a, b, 'a');
 }
