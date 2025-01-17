@@ -5,32 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: habenydi <habenydi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 09:57:22 by habenydi          #+#    #+#             */
-/*   Updated: 2025/01/09 11:11:11 by habenydi         ###   ########.fr       */
+/*   Created: 2025/01/13 20:55:06 by habenydi          #+#    #+#             */
+/*   Updated: 2025/01/13 21:42:13 by habenydi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+void	handlit(int arg, t_stack **a)
 {
-	t_stack	*a;
-	t_stack	*b;
 	t_stack	*tmp;
-	int	i;
 
-	i = ac - 1;
-	a = ft_lstnew(ft_atoi(av[ac - 1]), ac - 1);
-	tmp = a;
-	while (i-- > 1)
+	tmp = (*a)->next->next;
+	if (arg == 2 && !isorted(*a))
+		sa_sb(a, 'a');
+	if (arg == 3)
 	{
-		tmp = ft_lstnew(ft_atoi(av[i]), i);
-		tmp = tmp->next;
+		if ((*a)->data > (*a)->next->data)
+			sa_sb(a, 'a');
+		if ((*a)->next->data > tmp->data)
+		{
+			rra_rrb(a, 'a');
+			if ((*a)->data > (*a)->next->data)
+				sa_sb(a, 'a');
+		}
 	}
-	ft_sort(&a, &b);
-	while (a != NULL)
+}
+
+void	print_stack(t_stack *a)
+{
+	while (a)
 	{
 		printf("%d\n", a->data);
 		a = a->next;
 	}
+}
+
+/*void	handlit45(int arg, t_stack **a)
+{
+	 5 1 4 99
+}*/
+
+int	main(int ac, char **av)
+{
+	t_stack	*a;
+	t_stack	*b;
+	int	i;
+
+	b = NULL;
+	a = NULL;
+	i = 0;
+	if (ac == 1)
+		return (0);
+	if (ac == 2 && ft_atoi(&av[1][0]))
+		return (0);
+	while (i++ < ac - 1)
+		ft_lstadd_back(&a,ft_lstnew(ft_atoi(&av[i][0]), i));
+	handlit(ac - 1, &a);
+//	if (!isorted(a))
+		ft_sort(&a, &b, ac - 1 );
+	print_stack(a);
+	if (isorted(a))
+		printf("OK!!!\n");
+	else
+		printf("No :\'\( \n");
 }

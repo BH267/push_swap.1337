@@ -1,6 +1,6 @@
 
-SRC = push_swap.c ft_sort.c ps_operations.c ps_operations2.c utils_push_swap.c flists.c ft_split.c
-
+SRC = push_swap.c ft_sort.c ps_operations.c ps_operations2.c utils_push_swap.c ft_lists.c ft_split.c \
+      ft_bubble_sort.c ft_is_sorted.c ft_push_swap.c ft_atoi.c
 NAME = push_swap
 OBJ = $(SRC:.c=.o)
 CC = cc
@@ -12,6 +12,9 @@ all :$(NAME)
 
 $(NAME) : $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	
+%.o : %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	@$(RM) $(OBJ)
