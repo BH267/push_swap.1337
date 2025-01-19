@@ -22,3 +22,14 @@ int	isorted(t_stack *a)
 	}
 	return (1);
 }
+
+int	irevorted(t_stack *a)
+{
+	while (a->next)
+	{
+		if (a->data < a->next->data)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	handlit(int arg, t_stack **a)
+void	sort_t(int arg, t_stack **a)
 {
 	t_stack	*tmp;
 
@@ -34,9 +34,16 @@ void	handlit(int arg, t_stack **a)
 
 void	print_stack(t_stack *a)
 {
+	int 	i;
+	i = 1;
 	while (a)
 	{
 		printf("%d\n", a->data);
+		if (a->next && i && a->data > a->next->data)
+		{
+			printf("hnaa :\(\n");
+			i = 0;
+		}
 		a = a->next;
 	}
 }
@@ -61,10 +68,10 @@ int	main(int ac, char **av)
 		return (0);
 	while (i++ < ac - 1)
 		ft_lstadd_back(&a,ft_lstnew(ft_atoi(&av[i][0]), i));
-	handlit(ac - 1, &a);
-//	if (!isorted(a))
-		ft_sort(&a, &b, ac - 1 );
-	print_stack(a);
+	sort_tf(&a, &b, ac - 1);
+	//if (!isorted(a))
+	//	ft_sort(&a, &b, ac - 1 );
+	 print_stack(a);
 	if (isorted(a))
 		printf("OK!!!\n");
 	else

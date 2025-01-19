@@ -31,40 +31,30 @@ int	*sorted_arr(t_stack *a, int size)
 
 void	ft_sort2(t_stack **a, t_stack **b, int size);
 
-void	check(t_stack **b)
-{
-	if ((*b)->data < (*b)->next->data)
-		sa_sb(b, 'b');
-}
-
 void	ft_sort(t_stack **a, t_stack **b, int size)
 {
 	int (*arr), (end), (start);
-	end = size / 7;
+	end = size / 11;
 	start = 0;
 	arr = sorted_arr(*a, size);
-	while (start < end)
+	while (*a)
 	{
-		printf("hak\n");
+		if (end + start > size)
+			end = size - start - 1;
 		if ((*a)->data < arr[start])
 		{
 			(pa_pb(b, a, 'b'), ra_rb(b, 'b'));
-			printf("has\n");
+			start++;
+		}
+		else if ((*a)->data >= arr[start] && (*a)->data <= arr[end + start])
+		{
+			pa_pb(b, a, 'b');
+			if ((*b)->next && (*b)->data < (*b)->next->data)
+				sa_sb(b, 'b');
+			start++;
 		}
 		else if ((*a)->data > arr[end])
-		{
 			ra_rb(a, 'a');
-			printf("2\n");
-		}
-		else
-	{
-			(pa_pb(b, a, 'b'), check(b));
-			printf("5\n");
-		}
-		printf("hak\n");
-		start++;
-		if (end < size)
-			end++;
 	}
 	ft_sort2(a, b, size);
 }
