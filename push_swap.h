@@ -24,6 +24,12 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+typedef struct s_splt
+{
+	int	count;
+	char	**arr;
+}	t_splt;
+
 void	print_stack(t_stack *a);
 int	ft_isdigit(int n);
 int	ft_atoi(char *str);
@@ -41,8 +47,9 @@ void	rr(t_stack **a, t_stack **b);
 void	sort_t(int arg, t_stack **a);
 void	ss(t_stack **a, t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
+t_splt	splitit(char *str);
 void	bubble_sort(int *arr, int size);
-char	**ft_split(char const *s, char c);
+t_splt	ft_split(char const *s, char c);
 t_stack	*ft_lstnew(int content, int index);
 void	pa_pb(t_stack **a, t_stack **b, int c);
 void	sort_tf(t_stack **a, t_stack **b, int size);

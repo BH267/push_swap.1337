@@ -15,7 +15,7 @@
 t_stack	get_min(t_stack *a)
 {
 	t_stack	min;
-	int	i;
+	int		i;
 
 	min.data = a->data;
 	i = 1;
@@ -32,7 +32,7 @@ t_stack	get_min(t_stack *a)
 	return (min);
 }
 
-void sort_f4(t_stack **a,t_stack **b)
+void	sort_f4(t_stack **a, t_stack **b)
 {
 	t_stack	min;
 
@@ -41,7 +41,8 @@ void sort_f4(t_stack **a,t_stack **b)
 	{
 		sa_sb(a, 'a');
 		pa_pb(b, a, 'b');
-	}else if (min.index > 2)
+	}
+	else if (min.index > 2)
 	{
 		while (min.data != (*a)->data)
 			rra_rrb(a, 'a');
@@ -53,16 +54,17 @@ void sort_f4(t_stack **a,t_stack **b)
 	pa_pb(a, b, 'a');
 }
 
-void sort_f5(t_stack **a, t_stack **b)
+void	sort_f5(t_stack **a, t_stack **b)
 {
-	t_stack min;
+	t_stack	min;
 
 	min = get_min(*a);
 	if (min.index == 2)
 	{
 		sa_sb(a, 'a');
 		pa_pb(b, a, 'b');
-	}else if (min.index > 2)
+	}
+	else if (min.index > 2)
 	{
 		while (min.data != (*a)->data)
 			rra_rrb(a, 'a');
@@ -74,7 +76,7 @@ void sort_f5(t_stack **a, t_stack **b)
 	pa_pb(a, b, 'a');
 }
 
-void sort_tf(t_stack **a, t_stack **b, int size)
+void	sort_tf(t_stack **a, t_stack **b, int size)
 {
 	if (size == 2)
 		sort_t(2, a);
@@ -84,7 +86,6 @@ void sort_tf(t_stack **a, t_stack **b, int size)
 		sort_f4(a, b);
 	if (size == 5)
 		sort_f5(a, b);
-	//free(*a);
-	//free(*b);
-//	exit(0);
+//	free(*a);
+//	free(*b);
 }

@@ -1,6 +1,6 @@
 
 SRC = push_swap.c ft_sort.c ps_operations.c ps_operations2.c utils_push_swap.c ft_lists.c ft_split.c \
-      ft_bubble_sort.c ft_is_sorted.c ft_push_swap.c ft_atoi.c handletfs.c
+      ft_bubble_sort.c ft_is_sorted.c ft_atoi.c handletfs.c split_it.c
 NAME = push_swap
 OBJ = $(SRC:.c=.o)
 CC = cc

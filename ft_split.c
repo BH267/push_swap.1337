@@ -97,18 +97,12 @@ static int	ft_write(char **s, const char *d, char c)
 	return (1);
 }
 
-char	**ft_split(char const *s, char c)
+t_splt	ft_split(char const *s, char c)
 {
-	int		count;
-	char	**arr;
+	t_splt	splt;
 
-	if (!s)
-		return (NULL);
-	count = ft_count_word(s, c);
-	arr = (char **)malloc((count + 1) * sizeof(char *));
-	if (!arr)
-		return (NULL);
-	if (ft_write(arr, s, c) == 0)
-		return (NULL);
-	return (arr);
+	splt.count = ft_count_word(s, c);
+	splt.arr = (char **)malloc((splt.count + 1) * sizeof(char *));
+	ft_write(splt.arr, s, c);
+	return (splt);
 }

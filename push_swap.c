@@ -48,32 +48,35 @@ void	print_stack(t_stack *a)
 	}
 }
 
-/*void	handlit45(int arg, t_stack **a)
-{
-	 5 1 4 99
-}*/
-
 int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
+	t_splt	nbrs;
 	int	i;
 
 	b = NULL;
 	a = NULL;
+	nbrs.arr = av;
+	nbrs.count = ac - 1;
 	i = 0;
 	if (ac == 1)
 		return (0);
-	if (ac == 2 && ft_atoi(&av[1][0]))
-		return (0);
-	while (i++ < ac - 1)
-		ft_lstadd_back(&a,ft_lstnew(ft_atoi(&av[i][0]), i));
-	sort_tf(&a, &b, ac - 1);
-	//if (!isorted(a))
-	//	ft_sort(&a, &b, ac - 1 );
-	 print_stack(a);
+	if (ac == 2)
+		nbrs = splitit(&nbrs.arr[1][0]);
+	while (i++ < nbrs.count)
+		ft_lstadd_back(&a, ft_lstnew(ft_atoi(&nbrs.arr[i][0]), i));
+	if (!isorted(a))
+	{
+		if (nbrs.count <= 5)
+			sort_tf(&a, &b, nbrs.count);
+		else
+			ft_sort(&a, &b, nbrs.count);
+	}
+	//print_stack(a);
 	if (isorted(a))
 		printf("OK!!!\n");
 	else
 		printf("No :\'\( \n");
+	ft_lstclear(&a);
 }
