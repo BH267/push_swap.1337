@@ -65,7 +65,8 @@ int	main(int ac, char **av)
 	if (ac == 2)
 		nbrs = splitit(&nbrs.arr[1][0]);
 	while (i++ < nbrs.count)
-		ft_lstadd_back(&a, ft_lstnew(ft_atoi(&nbrs.arr[i][0]), i));
+		ft_lstadd_back(&a, ft_lstnew(ft_atoi(&nbrs.arr[i][0], &a), i));
+	ifdup(&a);
 	if (!isorted(a))
 	{
 		if (nbrs.count <= 5)

@@ -32,7 +32,8 @@ typedef struct s_splt
 
 void	print_stack(t_stack *a);
 int	ft_isdigit(int n);
-int	ft_atoi(char *str);
+t_splt	splitit(char *str);
+void	ifdup(t_stack **a);
 int	isorted(t_stack *a);
 size_t	ft_strlen(char const *s);
 char	*ft_strdup(const char *s);
@@ -47,7 +48,7 @@ void	rr(t_stack **a, t_stack **b);
 void	sort_t(int arg, t_stack **a);
 void	ss(t_stack **a, t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
-t_splt	splitit(char *str);
+int	ft_atoi(char *str, t_stack **a);
 void	bubble_sort(int *arr, int size);
 t_splt	ft_split(char const *s, char c);
 t_stack	*ft_lstnew(int content, int index);

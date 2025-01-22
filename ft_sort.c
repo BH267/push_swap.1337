@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-#include <stdio.h>
-
 int sqr(double number) {
     double guess = number / 2.0;
     double epsilon = 0.000001;
@@ -40,25 +38,43 @@ int	*sorted_arr(t_stack *a, int size)
 	return (arr);
 }
 
+void	rankit(t_stack *a, int size)
+{
+	int	*arr;
+	int	i;
+
+	arr = sorted_arr(a, size);
+	while (a)
+	{
+		i = 0;
+		while (i < size)
+			if (a->data == arr[i++])
+				a->index = i;
+		a = a->next;
+	}
+	free(arr);
+}
+
 void	ft_sort2(t_stack **a, t_stack **b, int size);
 
 void	ft_sort(t_stack **a, t_stack **b, int size)
 {
-	int (*arr), (end), (start);
+	int (end), (start);
 	end = sqr(size) + size / 500 + 6; //500->29 //100->16
 	start = 0;
-	arr = sorted_arr(*a, size);
+	rankit(*a, size);
+//	arr = sorted_arr(*a, size);
 	while (*a)
 	{
-		if (end > size)
-			end = size - 1;
-		if ((*a)->data < arr[start])
+//		if (end > size)
+//			end = size - 1;
+		if ((*a)->index < start)
 		{
 			(pa_pb(b, a, 'b'), ra_rb(b, 'b'));
 			start++;
 			end++;
 		}
-		else if ((*a)->data >= arr[start] && (*a)->data <= arr[end])
+		else if ((*a)->index >= start && (*a)->index <= end)
 		{
 			pa_pb(b, a, 'b');
 			if ((*b)->next && (*b)->data < (*b)->next->data)
@@ -66,11 +82,11 @@ void	ft_sort(t_stack **a, t_stack **b, int size)
 			start++;
 			end++;
 		}
-		else if ((*a)->data > arr[end])
+		else if ((*a)->index > end)
 			ra_rb(a, 'a');
 	}
 	ft_sort2(a, b, size);
-	free(arr);
+//	free(arr);
 }
 
 void	ft_sort3(t_stack **a, t_stack **b, int *size, t_stack c)
