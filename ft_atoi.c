@@ -12,17 +12,19 @@
 
 #include "push_swap.h"
 
-void isimposter(char c, t_stack **a)
+void isimposter(char c, t_stack **a, t_splt nbrs)
 {
 	if (c)
 	{
 		write(1, "Error\n", 6);
+		if (nbrs.count != nbrs.ac)
+			ft_free(nbrs.arr, nbrs.count + 2);
 		ft_lstclear(a);
 		exit(1);
 	}
 }
 
-int	ft_atoi(char *nbr, t_stack **a)
+int	ft_atoi(char *nbr, t_stack **a, t_splt splt)
 {
 	int	n;
 	int	s;
@@ -37,6 +39,7 @@ int	ft_atoi(char *nbr, t_stack **a)
 	if (!ft_isdigit(*nbr))
 	{
 		write(1, "Error\n", 6);
+		ft_free(splt.arr, splt.count + 2);
 		ft_lstclear(a);
 		exit(1);
 	}
@@ -45,11 +48,11 @@ int	ft_atoi(char *nbr, t_stack **a)
 		n = n * 10 + (*nbr - '0');
 		nbr++;
 	}
-	isimposter(*nbr, a);
+	isimposter(*nbr, a, splt);
 	return (n * s);
 }
 
-void	ifdup(t_stack **a)
+void	ifdup(t_stack **a, t_splt nbrs)
 {
 	t_stack	*tmp;
 	t_stack	*temp;
@@ -63,6 +66,8 @@ void	ifdup(t_stack **a)
 			if (temp->data == tmp->data && temp->index != tmp->index)
 			{
 				ft_lstclear(a);
+				if (nbrs.count != nbrs.ac)
+					ft_free(nbrs.arr, nbrs.count + 2);
 				write(1, "Error\n", 6);
 				exit(1);
 			}

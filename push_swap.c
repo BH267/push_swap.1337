@@ -59,14 +59,16 @@ int	main(int ac, char **av)
 	a = NULL;
 	nbrs.arr = av;
 	nbrs.count = ac - 1;
+	nbrs.ac = ac - 1;
+	//ft_isvalid(nbrs ,&a);
 	i = 0;
 	if (ac == 1)
 		return (0);
 	if (ac == 2)
 		nbrs = splitit(&nbrs.arr[1][0]);
 	while (i++ < nbrs.count)
-		ft_lstadd_back(&a, ft_lstnew(ft_atoi(&nbrs.arr[i][0], &a), i));
-	ifdup(&a);
+		ft_lstadd_back(&a, ft_lstnew(ft_atoi(&nbrs.arr[i][0], &a, nbrs), i));
+	ifdup(&a, nbrs);
 	if (!isorted(a))
 	{
 		if (nbrs.count <= 5)
@@ -80,4 +82,7 @@ int	main(int ac, char **av)
 	else
 		printf("No :\'\( \n");
 	ft_lstclear(&a);
+	if (ac == 2)
+		ft_free(nbrs.arr, nbrs.count + 2);
 }
+

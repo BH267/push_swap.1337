@@ -57,11 +57,13 @@ static int	ft_count_word(const char *s, char c)
 	return (count);
 }
 
-static int	ft_free(char **s, size_t i)
+int	ft_free(char **s, size_t i)
 {
 	size_t	index;
 
 	index = 0;
+	if (s == NULL || i == 0)
+		return (1);
 	while (index < i - 1)
 	{
 		free(s[index]);
@@ -76,7 +78,6 @@ static int	ft_write(char **s, const char *d, char c)
 	size_t	wcont;
 	size_t	start;
 	size_t	index;
-
 	wcont = 0;
 	start = 0;
 	index = 0;
@@ -94,7 +95,7 @@ static int	ft_write(char **s, const char *d, char c)
 			return (ft_free(s, index));
 	}
 	s[index] = NULL;
-	return (1);
+	return (0);
 }
 
 t_splt	ft_split(char const *s, char c)
