@@ -1,16 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flists.c                                           :+:      :+:    :+:   */
+/*   ft_lists.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: habenydi <habenydi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 12:29:57 by habenydi          #+#    #+#             */
-/*   Updated: 2025/01/09 12:39:13 by habenydi         ###   ########.fr       */
+/*   Created: 2025/01/26 18:43:54 by habenydi          #+#    #+#             */
+/*   Updated: 2025/01/26 18:48:51 by habenydi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_lstclear(t_stack **lst)
+{
+	t_stack	*n;
+
+	if (!lst)
+		return ;
+	while ((*lst) != NULL)
+	{
+		n = (*lst)->next;
+		free(*lst);
+		*lst = n;
+	}
+	lst = NULL;
+}
+
+void	ft_lstadd_front(t_stack **lst, t_stack *new)
+{
+	if (!new || !lst)
+		return ;
+	new->next = *(lst);
+	*lst = new;
+}
+
+t_stack	*ft_lstnew(int	content)
+{
+	t_stack	*n;
+
+	n = malloc(sizeof(t_stack));
+	if (!n)
+		return (NULL);
+	n->data = content;
+	n->next = NULL;
+	return (n);
+}
 
 t_stack	*ft_lstlast(t_stack *lst)
 {
@@ -29,34 +64,4 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 		ft_lstlast(*lst)->next = new;
 	else
 		*lst = new;
-}
-
-void	ft_lstadd_front(t_stack **lst, t_stack *new)
-{
-	if (!new || !lst)
-		return ;
-	new->next = *(lst);
-	*lst = new;
-}
-
-void	ft_lstdelone(t_stack *lst)
-{
-	if (!lst)
-		return ;
-	free(lst);
-}
-
-void	ft_lstclear(t_stack **lst)
-{
-	t_stack	*n;
-
-	if (!lst)
-		return ;
-	while ((*lst) != NULL)
-	{
-		n = (*lst)->next;
-		free(*lst);
-		*lst = n;
-	}
-	lst = NULL;
 }

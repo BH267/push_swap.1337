@@ -30,13 +30,6 @@ void	sa_sb(t_stack **a, int c)
 		write(1, "sb\n", 3);
 }
 
-void	ss(t_stack **a, t_stack **b)
-{
-	sa_sb(a, 's');
-	sa_sb(b, 's');
-	write(1, "ss\n", 3);
-}
-
 void	pa_pb(t_stack **a, t_stack **b, int c)
 {
 	t_stack	*tmp;
@@ -67,9 +60,22 @@ void	ra_rb(t_stack **a, int c)
 		write(1, "rb\n", 3);
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rra_rrb(t_stack **a, int c)
 {
-	ra_rb(a, 's');
-	ra_rb(b, 's');
-	write(1, "rr\n", 3);
+	t_stack	*tmp;
+	t_stack	*fin;
+
+	if (!(*a))
+		return;
+	tmp = ft_lstlast(*a);
+	fin = *a;
+	while (fin->next->next != NULL)
+		fin = fin->next;
+	tmp->next = *a;
+	*a = tmp;
+	fin->next = NULL;
+	if (c == 'a')
+		write(1, "rra\n", 4);
+	if (c == 'b')
+		write(1, "rrb\n", 4);
 }

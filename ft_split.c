@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: habenydi <habenydi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/09 14:34:26 by habenydi          #+#    #+#             */
-/*   Updated: 2025/01/09 14:39:22 by habenydi         ###   ########.fr       */
+/*   Created: 2025/01/26 18:49:11 by habenydi          #+#    #+#             */
+/*   Updated: 2025/01/26 18:51:10 by habenydi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,12 @@ int	ft_free(char **s, size_t i)
 	size_t	index;
 
 	index = 0;
-	if (s == NULL || i == 0)
-		return (1);
-	while (index < i - 1)
-	{
-		free(s[index]);
-		index++;
-	}
+	if (i)
+		while (index < i - 1)
+			free(s[index++]);
+	else
+		while (s[i])
+			free(s[i++]);
 	free(s);
 	return (0);
 }
@@ -78,6 +77,7 @@ static int	ft_write(char **s, const char *d, char c)
 	size_t	wcont;
 	size_t	start;
 	size_t	index;
+
 	wcont = 0;
 	start = 0;
 	index = 0;
@@ -95,15 +95,21 @@ static int	ft_write(char **s, const char *d, char c)
 			return (ft_free(s, index));
 	}
 	s[index] = NULL;
-	return (0);
+	return (1);
 }
 
-t_splt	ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	t_splt	splt;
+	int		count;
+	char	**arr;
 
-	splt.count = ft_count_word(s, c);
-	splt.arr = (char **)malloc((splt.count + 1) * sizeof(char *));
-	ft_write(splt.arr, s, c);
-	return (splt);
+	if (!s)
+		return (NULL);
+	count = ft_count_word(s, c);
+	arr = (char **)malloc((count + 1) * sizeof(char *));
+	if (!arr)
+		return (NULL);
+	if (ft_write(arr, s, c) == 0)
+		return (NULL);
+	return (arr);
 }
