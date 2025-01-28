@@ -29,6 +29,8 @@ typedef struct s_stack
 void	print_stack(t_stack *a);
 
 // sorting
+int	isorted(t_stack *a);
+void	sort_tf(t_stack **a, t_stack **b, int size);
 void	ft_sort(t_stack **a, t_stack **b, int size);
 
 // parcing

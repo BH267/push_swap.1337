@@ -12,6 +12,17 @@
 
 #include "push_swap.h"
 
+int	isorted(t_stack *a)
+{
+	while (a->next)
+	{
+		if (a->data > a->next->data)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
 void	print_stack(t_stack *a)
 {
 	while (a)
@@ -48,6 +59,12 @@ int	main(int ac, char **av)
 	while (i > 0)
 		ft_parsing(av[i--], &a);
 	ft_isdup(&a);
-	ft_sort(&a, &b, ft_size(a));
-	print_stack(b);
+	if (!isorted(a))
+	{
+		if (ft_size(a) <= 5)
+			sort_tf(&a, &b, ft_size(a));
+		else
+			ft_sort(&a, &b, ft_size(a));
+	}
+	ft_lstclear(&a);
 }

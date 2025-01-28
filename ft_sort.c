@@ -13,10 +13,10 @@
 #include "push_swap.h"
 
 int sqr(double n) {
-    double guess = n / 2;
+    double guess = n / 2.0;
     double epsi = 0.000001;
     while ((guess * guess - n > epsi) || (n - guess * guess > epsi)) {
-        guess = (guess + n / guess) / 2;
+        guess = (guess + n / guess) / 2.0;
     }
     return ((int)guess);
 }
@@ -55,26 +55,26 @@ void	rankit(t_stack *a, int size)
 	free(arr);
 }
 
-void	ft_backtoa(t_stack **a, t_stack **b, int size, t_stack max)
+void	ft_backtoa(t_stack **a, t_stack **b, int *size, t_stack max)
 {
 	while (1)
 	{
 		if (max.data == (*b)->data)
 		{
 			pa_pb(a, b, 'a');
-			size -= 1;
+			*size -= 1;
 			break ;
 		}
-		else if (max.index <= size / 2)
+		else if (max.index <= *size / 2)
 		{
 			ra_rb(b, 'b');
-
+			max.index--;
 		}
-		else if (max.index > size / 2)
+		else if (max.index > *size / 2)
 		{
 			rra_rrb(b, 'b');
 			max.index++;
-			if (max.index == size)
+			if (max.index == *size)
 				max.index = 0;
 		}
 	}
@@ -101,8 +101,31 @@ void	ft_get_max(t_stack **a, t_stack **b, int size)
 			i++;
 			tmp = tmp->next;
 		}
-		ft_backtoa(a, b, size, max);
+		ft_backtoa(a, b, &size, max);
 	}
+}
+
+void	find_pos(t_stack **a, int len, int min, int max)
+{
+	t_stack	*tmp;
+	int		pos;
+
+	tmp = *a;
+	pos = 0;
+	while (tmp)
+	{
+		if (tmp->index >= min && tmp->index <= max)
+			break ;
+		tmp = tmp->next;
+		pos++;
+	}
+	if (pos > len / 2)
+	{
+		while (pos++ < len)
+			rra_rrb(a, 'a');
+	}
+	else
+		ra_rb(a, 'a');
 }
 
 void	ft_sort(t_stack **a, t_stack **b, int size)
@@ -131,7 +154,7 @@ void	ft_sort(t_stack **a, t_stack **b, int size)
 			end++;
 		}
 		else if ((*a)->index > end)
-			ra_rb(a, 'a');
+			find_pos(a, size, start, end);
 	}
 	ft_get_max(a, b, size);
 }
