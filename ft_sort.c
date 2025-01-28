@@ -12,49 +12,6 @@
 
 #include "push_swap.h"
 
-int sqr(double n) {
-    double guess = n / 2.0;
-    double epsi = 0.000001;
-    while ((guess * guess - n > epsi) || (n - guess * guess > epsi)) {
-        guess = (guess + n / guess) / 2.0;
-    }
-    return ((int)guess);
-}
-
-int	*sorted_arr(t_stack *a, int size)
-{
-	int	*arr;
-	int	i;
-
-	arr = (int *)malloc(size * sizeof(int));
-	i = 0;
-	while (i < size)
-	{
-		arr[i] = a->data;
-		a = a->next;
-		i++;
-	}
-	bubble_sort(arr, size);
-	return (arr);
-}
-
-void	rankit(t_stack *a, int size)
-{
-	int	*arr;
-	int	i;
-
-	arr = sorted_arr(a, size);
-	while (a)
-	{
-		i = 0;
-		while (i < size)
-			if (a->data == arr[i++])
-				a->index = i;
-		a = a->next;
-	}
-	free(arr);
-}
-
 void	ft_backtoa(t_stack **a, t_stack **b, int *size, t_stack max)
 {
 	while (1)
@@ -84,11 +41,11 @@ void	ft_get_max(t_stack **a, t_stack **b, int size)
 {
 	t_stack	*tmp;
 	t_stack	max;
-	int	i;
+	int		i;
 
 	while (*b)
 	{
-		tmp  = *b;
+		tmp = *b;
 		max.data = tmp->data;
 		i = 0;
 		while (tmp)
@@ -130,9 +87,7 @@ void	find_pos(t_stack **a, int len, int min, int max)
 
 void	ft_sort(t_stack **a, t_stack **b, int size)
 {
-	int	end;
-	int	start;
-
+	int (end), (start);
 	start = 0;
 	end = sqr(size) + (size / 500) + 6;
 	rankit(*a, size);

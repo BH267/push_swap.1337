@@ -30,30 +30,30 @@ int	ft_puredigit(char *s)
 	return (0);
 }
 
-int    ft_psatoi(char *str, t_stack **a, char **spl)
+int	ft_psatoi(char *str, t_stack **a, char **spl)
 {
-    int        i;
-    int        sign;
-    size_t    n;
+	int		i;
+	int		sign;
+	size_t	n;
 
-    i = 0;
-    sign = 1;
-    n = 0;
-    if (!ft_strncmp(str, "2147483648", 10))
-        return (ft_lstclear(a), write(2, "Error\n", 6), exit(1), 0);
-    while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-        i++;
-    if (str[i] == '+' || str[i] == '-')
-        if (str[i++] == '-')
-            sign = -1;
-    while (str[i] <= '9' && str[i] >= '0')
-    {
-        n = (n * 10) + (str[i] - '0');
-        i++;
-        if (n > 2147483648)
-            return (ft_lstclear(a), ft_free(spl, 0), write(2, "Error\n", 6), exit(1), 0);
-    }
-    return (n * sign);
+	i = 0;
+	sign = 1;
+	n = 0;
+	if (!ft_strncmp(str, "2147483648", 10))
+		return (ft_lstclear(a), write(2, "Error\n", 6), exit(1), 0);
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
+			sign = -1;
+	while (str[i] <= '9' && str[i] >= '0')
+	{
+		n = (n * 10) + (str[i] - '0');
+		i++;
+		if (n > 2147483648)
+			return (ft_exit(a, &spl), 0);
+	}
+	return (n * sign);
 }
 
 int	ft_isspace(char *av)
@@ -80,33 +80,25 @@ int	ft_countwd(char **spl)
 	return (i);
 }
 
-void	print_split(char **s){
-	int	i = 0;
-	while (s[i])
-		i++;
-	printf("=%d\n", i);
-}
-
 int	ft_parsing(char *s, t_stack **a)
 {
 	char	**spl;
-	int	i;
+	int		i;
 
 	if (ft_puredigit(s))
 		ft_lstadd_front(a, ft_lstnew(ft_psatoi(s, a, NULL)));
 	else if (ft_isspace(s))
 	{
 		spl = ft_split(s, ' ');
-		//print_split(spl);
 		if (!spl || !*spl)
-			return (ft_lstclear(a), ft_free(spl, 0), write(2, "Error\n", 6), exit(1), 0);
+			return (ft_exit(a, &spl), 0);
 		i = ft_countwd(spl) - 1;
 		while (i >= 0)
 		{
 			if (ft_puredigit(spl[i]))
 				ft_lstadd_front(a, ft_lstnew(ft_psatoi(spl[i], a, spl)));
 			else
-				return (ft_lstclear(a), ft_free(spl, 0), write(2, "Error\n", 6), exit(1), 0);
+				return (ft_exit(a, &spl), 0);
 			i--;
 		}
 		ft_free(spl, 0);
@@ -114,24 +106,4 @@ int	ft_parsing(char *s, t_stack **a)
 	else
 		return (ft_lstclear(a), write(2, "Error\n", 6), exit(1), 0);
 	return (1);
-}
-
-int    ft_isdup(t_stack **lst)
-{
-    t_stack	*temp;
-    t_stack	*checker;
-
-    temp = *lst;
-    while (temp)
-    {
-        checker = temp->next;
-        while (checker)
-        {
-            if (temp->data == checker->data)
-                return (ft_lstclear(lst), write(2, "Error\n", 6), exit(1), 0);
-            checker = checker->next;
-        }
-        temp = temp->next;
-    }
-    return (1);
 }

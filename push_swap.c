@@ -12,6 +12,16 @@
 
 #include "push_swap.h"
 
+void	ft_exit(t_stack **a, char ***spl)
+{
+	// (void)a;
+	// (void)spl;
+	ft_lstclear(a);
+	ft_free(*spl, 0);
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
 int	isorted(t_stack *a)
 {
 	while (a->next)
@@ -47,9 +57,9 @@ int	ft_size(t_stack *a)
 
 int	main(int ac, char **av)
 {
-	int	i;
-	t_stack *a;
-	t_stack *b;
+	int		i;
+	t_stack	*a;
+	t_stack	*b;
 
 	i = ac - 1;
 	a = NULL;
