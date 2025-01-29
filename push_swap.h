@@ -32,7 +32,7 @@ void	ft_sort(t_stack **a, t_stack **b, int size);
 // parcing
 int		ft_isdup(t_stack **lst);
 int		ft_parsing(char *s, t_stack **a);
-void	ft_exit(t_stack **a, char ***spl);
+void	ft_exit(t_stack **a, char **spl);
 
 // oparators
 void	sa_sb(t_stack **a, int c);

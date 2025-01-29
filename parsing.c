@@ -40,7 +40,7 @@ int	ft_psatoi(char *str, t_stack **a, char **spl)
 	sign = 1;
 	n = 0;
 	if (!ft_strncmp(str, "2147483648", 10))
-		return (ft_lstclear(a), write(2, "Error\n", 6), exit(1), 0);
+		return (ft_exit(a, NULL), 0);
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
 	if (str[i] == '+' || str[i] == '-')
@@ -51,7 +51,7 @@ int	ft_psatoi(char *str, t_stack **a, char **spl)
 		n = (n * 10) + (str[i] - '0');
 		i++;
 		if (n > 2147483648)
-			return (ft_exit(a, &spl), 0);
+			return (ft_exit(a, spl), 0);
 	}
 	return (n * sign);
 }
@@ -91,19 +91,19 @@ int	ft_parsing(char *s, t_stack **a)
 	{
 		spl = ft_split(s, ' ');
 		if (!spl || !*spl)
-			return (ft_exit(a, &spl), 0);
+			return (ft_exit(a, spl), 0);
 		i = ft_countwd(spl) - 1;
 		while (i >= 0)
 		{
 			if (ft_puredigit(spl[i]))
 				ft_lstadd_front(a, ft_lstnew(ft_psatoi(spl[i], a, spl)));
 			else
-				return (ft_exit(a, &spl), 0);
+				return (ft_exit(a, spl), 0);
 			i--;
 		}
 		ft_free(spl, 0);
 	}
 	else
-		return (ft_lstclear(a), write(2, "Error\n", 6), exit(1), 0);
+		return (ft_exit(a, NULL), 0);
 	return (1);
 }

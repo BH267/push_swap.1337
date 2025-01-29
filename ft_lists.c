@@ -16,7 +16,7 @@ void	ft_lstclear(t_stack **lst)
 {
 	t_stack	*n;
 
-	if (!lst)
+	if (!lst || !*lst)
 		return ;
 	while ((*lst) != NULL)
 	{

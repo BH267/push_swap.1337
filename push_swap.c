@@ -12,12 +12,10 @@
 
 #include "push_swap.h"
 
-void	ft_exit(t_stack **a, char ***spl)
+void	ft_exit(t_stack **a, char **spl)
 {
-	// (void)a;
-	// (void)spl;
 	ft_lstclear(a);
-	ft_free(*spl, 0);
+	ft_free(spl, 0);
 	write(2, "Error\n", 6);
 	exit(1);
 }
