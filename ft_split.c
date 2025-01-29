@@ -62,7 +62,7 @@ int	ft_free(char **s, size_t i)
 	size_t	index;
 
 	if (!s)
-		return(0) ;
+		return (0);
 	index = 0;
 	if (i)
 		while (index < i - 1)

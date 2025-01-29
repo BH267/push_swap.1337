@@ -35,7 +35,7 @@ void	ft_lstadd_front(t_stack **lst, t_stack *new)
 	*lst = new;
 }
 
-t_stack	*ft_lstnew(int	content)
+t_stack	*ft_lstnew(int content)
 {
 	t_stack	*n;
 

@@ -35,7 +35,7 @@ void	pa_pb(t_stack **a, t_stack **b, int c)
 	t_stack	*tmp;
 
 	if (*b == NULL)
-		return;
+		return ;
 	tmp = *b;
 	*b = tmp->next;
 	tmp->next = *a;
@@ -66,7 +66,7 @@ void	rra_rrb(t_stack **a, int c)
 	t_stack	*fin;
 
 	if (!(*a))
-		return;
+		return ;
 	tmp = ft_lstlast(*a);
 	fin = *a;
 	while (fin->next->next != NULL)
