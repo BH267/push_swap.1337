@@ -31,15 +31,6 @@ int	isorted(t_stack *a)
 	return (1);
 }
 
-void	print_stack(t_stack *a)
-{
-	while (a)
-	{
-		printf("%d => %d\n", a->data, a->index);
-		a = a->next;
-	}
-}
-
 int	ft_size(t_stack *a)
 {
 	int	i;
