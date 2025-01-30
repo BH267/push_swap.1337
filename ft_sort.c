@@ -12,6 +12,14 @@
 
 #include "push_swap.h"
 
+void	ft_exit(t_stack **a, char **spl)
+{
+	ft_lstclear(a);
+	ft_free(spl, 0);
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
 void	ft_backtoa(t_stack **a, t_stack **b, int *size, t_stack max)
 {
 	while (1)

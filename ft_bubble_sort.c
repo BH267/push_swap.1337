@@ -12,6 +12,17 @@
 
 #include "push_swap.h"
 
+int	isorted(t_stack *a)
+{
+	while (a->next)
+	{
+		if (a->data > a->next->data)
+			return (0);
+		a = a->next;
+	}
+	return (1);
+}
+
 void	bubble_sort(int *arr, int size)
 {
 	int	i;

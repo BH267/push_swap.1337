@@ -19,6 +19,8 @@ void	sa_sb(t_stack **a, int c)
 
 	first = *a;
 	second = first->next;
+	if (!second)
+		return ;
 	first->next = second->next;
 	second->next = first;
 	*a = second;

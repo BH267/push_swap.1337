@@ -38,6 +38,9 @@ void	ft_exit(t_stack **a, char **spl);
 void	sa_sb(t_stack **a, int c);
 void	ra_rb(t_stack **a, int c);
 void	rra_rrb(t_stack **a, int c);
+void	rr(t_stack **a, t_stack **b);
+void	ss(t_stack **a, t_stack **b);
+void	rrr(t_stack **a, t_stack **b);
 void	pa_pb(t_stack **a, t_stack **b, int c);
 
 // helper functions
@@ -45,12 +48,13 @@ int		sqr(double n);
 int		ft_isdigit(int n);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *str);
-int		ft_free(char **s, size_t i);
 void	rankit(t_stack *a, int size);
 void	bubble_sort(int *arr, int size);
-int		*sorted_arr(t_stack *a, int size);
 char	**ft_split(char const *s, char c);
+int		ft_free(char **s, size_t i);
+int		*sorted_arr(t_stack *a, int size);
 int		ft_strncmp(char *s, char *p, size_t n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 // lists fonctions
 t_stack	*ft_lstnew(int content);
