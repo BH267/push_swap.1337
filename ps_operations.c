@@ -16,7 +16,9 @@ void	sa_sb(t_stack **a, int c)
 {
 	t_stack	*first;
 	t_stack	*second;
-
+	
+	if (!a || !*a)
+		return ;
 	first = *a;
 	second = first->next;
 	if (!second)
@@ -53,6 +55,8 @@ void	ra_rb(t_stack **a, int c)
 	t_stack	*tmp;
 
 	tmp = *a;
+	if (!a || !tmp)
+		return ;
 	*a = tmp->next;
 	ft_lstadd_back(a, tmp);
 	tmp->next = NULL;
