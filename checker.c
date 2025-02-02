@@ -78,10 +78,12 @@ int	main(int ac, char **av)
 		ft_parsing(av[i--], &a);
 	ft_isdup(&a);
 	khasiat_norm(&a, &b);
-	if (isorted(a) && !b)
-		write(1, "\033[38;2;0;255;0mOK\n\033[0m", 22);
-	else
-		write(1, "\033[38;2;255;0;0mKO\n\033[0m", 22);
+	if (!b)
+	{
+		if (isorted(a))
+			return (write(1, "\033[38;2;0;255;0mOK\n\033[0m", 22), 0);
+	}
+	return (write(1, "\033[38;2;255;0;0mKO\n\033[0m", 22), 1);
 	ft_lstclear(&a);
 	ft_lstclear(&b);
 }

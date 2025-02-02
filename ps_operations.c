@@ -16,7 +16,7 @@ void	sa_sb(t_stack **a, int c)
 {
 	t_stack	*first;
 	t_stack	*second;
-	
+
 	if (!a || !*a)
 		return ;
 	first = *a;
