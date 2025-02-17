@@ -81,9 +81,13 @@ int	main(int ac, char **av)
 	if (!b)
 	{
 		if (isorted(a))
+		{
+			ft_lstclear(&a);
+			ft_lstclear(&b);
 			return (write(1, "\033[38;2;0;255;0mOK\n\033[0m", 22), 0);
+		}
 	}
-	return (write(1, "\033[38;2;255;0;0mKO\n\033[0m", 22), 1);
 	ft_lstclear(&a);
 	ft_lstclear(&b);
+	return (write(1, "\033[38;2;255;0;0mKO\n\033[0m", 22), 1);
 }
